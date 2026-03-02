@@ -4,7 +4,7 @@ public:
         int n = s.length()-1;
         string s1 = "";
         while(n>=0){
-            char c = s[n];
+            char c = s.back();
             if(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'){
                 s = s.substr(0,n);
                 n--;
