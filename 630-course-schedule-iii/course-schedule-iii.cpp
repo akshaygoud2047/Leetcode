@@ -10,7 +10,7 @@ public:
         priority_queue<int> pq;   // Max heap of durations
         int time = 0;
 
-        for (auto course : courses) {
+        for (auto &course : courses) {
 
             int duration = course[0];
             int lastDay = course[1];
