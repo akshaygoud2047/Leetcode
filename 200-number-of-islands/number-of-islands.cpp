@@ -3,10 +3,10 @@ public:
     void dfs(int i, int j, int rows, int cols, vector<vector<char>>& grid) {
 
         // Base cases
-        if (i < 0 || i >= rows || j < 0 || j >= cols || grid[i][j] == '$')
+        if (i < 0 || i >= rows || j < 0 || j >= cols )
             return;
 
-        if (grid[i][j] == '0')
+        if (grid[i][j] == '0' || grid[i][j] == '$')
             return;
 
         // Mark current cell as visited
