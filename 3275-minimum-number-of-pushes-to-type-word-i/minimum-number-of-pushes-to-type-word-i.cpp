@@ -4,7 +4,11 @@ public:
         int n = word.length();
         int ans = 0;
         for(int i=0;i<n;i++){
-            ans+=(i/8)+1;
+            if(i<=7) ans+=1;
+            else if(i<=15) ans+=2;
+            else if(i<=23) ans+=3;
+            else ans+=4;
+            //ans+=(i/8)+1;
         }
     return ans;
     }
