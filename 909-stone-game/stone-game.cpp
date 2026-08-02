@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int t[503][503];
+    int t[501][501];
     int solve(int i,int j,vector<int>& piles){
         if(i>j){
             return 0;
