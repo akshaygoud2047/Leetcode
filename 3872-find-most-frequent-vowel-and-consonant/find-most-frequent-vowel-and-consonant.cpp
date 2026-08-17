@@ -3,7 +3,7 @@ public:
     int maxFreqSum(string s) {
         vector<int> freq(26, 0);
 
-        // Count frequency of each character
+       
         for (char ch : s) {
             freq[ch - 'a']++;
         }
