@@ -1,52 +1,38 @@
-// class Solution {
-// public:
-//     vector<vector<int>> threeSum(vector<int>& nums) {
-//         int n = nums.size();
-//         set<vector<int>>st;
-//         for(int i=0;i<n-1;i++){
-//             set<int>hashset;
-//             for(int j=i+1;j<n;j++){
-//                 int third = -(nums[i]+nums[j]);
-//                 if(hashset.find(third)!= hashset.end()){
-//                     vector<int> temp = {nums[i],nums[j],third};
-//                     sort(temp.begin(),temp.end());
-//                     st.insert(temp);
-//                 }
-//                 hashset.insert(nums[j]);
-//             }
-//         }
-//         vector<vector<int>> ans(st.begin(),st.end());
-//         return ans;
-//     }
-// };
 class Solution {
 public:
-    vector<vector<int>> threeSum(vector<int>& nums) {
-        vector<vector<int>>ans;
-        int n = nums.size();
-        sort(nums.begin(),nums.end());
-        for(int i=0;i<n;i++){
-            if(i>0 && nums[i] == nums[i-1]) continue;
-            int j = i+1;
-            int k = n-1;
-            while(j<k){
-                int sum = nums[i]+nums[j]+nums[k];
-                if(sum<0){
-                    j++;
+    vector < vector<int>>ans;
+    void twoSum(vector<int>& nums, int left, int right, int target) {
+
+        int sum = 0;
+        while (left < right) {
+            if (nums[left] + nums[right] < target) {
+                left++;
+            } else if (nums[left] + nums[right] > target) {
+                right--;             
+            } else {
+                while (left < right && nums[left] == nums[left + 1]) {
+                    left++;
                 }
-                else if(sum>0){
-                    k--;
+                while (left < right && nums[right] == nums[right - 1]) {
+                    right--;
                 }
-                else{
-                    vector<int>temp;
-                    temp = {nums[i],nums[j],nums[k]};
-                    ans.push_back(temp);
-                    j++;
-                    k--;
-                    while(j<k && nums[j] == nums[j-1]) j++ ;
-                    while(j<k && nums[k] == nums[k+1]) k-- ;
-                }
+                ans.push_back({-target, nums[left], nums[right]});
+                left++;
+                right--;
             }
+        }
+    }
+
+    vector<vector<int>> threeSum(vector<int>& nums) {
+
+        int n = nums.size();
+        if (n < 3) return {};
+        sort(nums.begin(),nums.end());
+        for (int i = 0; i < n - 2; i++) {
+            if (i > 0 && nums[i] == nums[i - 1])
+                continue;
+            int target = -(nums[i]);
+            twoSum(nums, i+1, n-1,target);
         }
         return ans;
     }
